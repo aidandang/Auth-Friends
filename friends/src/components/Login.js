@@ -11,7 +11,8 @@ const Login = (props) => {
     setIsFetching(true);
     axiosWithAuth().post('http://localhost:5000/api/login', credentials)
       .then(res => {
-        localStorage.setItem('token', res.data.token);
+        console.log(res.data)
+        localStorage.setItem('token', res.data.payload);
         props.history.push('/');
       })
       .catch(err => {
