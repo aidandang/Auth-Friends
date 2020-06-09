@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { axiosWithAuth } from './axiosAuth';
+import { Link } from 'react-router-dom';
 
 export default function FriendList() {
   const [friends, setFriends] = useState([]);
@@ -23,10 +24,12 @@ export default function FriendList() {
               <h5 className="card-title">{friend.name}</h5>
               <p className="card-text">Age: {friend.age}</p>
               <p className="card-text">Email: {friend.email}</p>
-              <a href="#" className="btn btn-primary">Go somewhere</a>
             </div>
           </div>
         )}
+      </div>
+      <div className="col-6">
+        <Link to="/friends" className="btn btn-primary">Add Friend</Link>
       </div>
     </div>
   </>
