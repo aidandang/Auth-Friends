@@ -3,13 +3,15 @@ import { axiosWithAuth } from './axiosAuth';
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({});
+  const [isFetching, setIsFetching] = useState(false);
 
   const login = e => {
     e.preventDefault();
+    setIsFetching(true);
     axiosWithAuth().post('login/endpoint', credentials)
       .then(res => {
         localStorage.setItem('token', res.data.token);
-        this.props.history.push('/');
+        props.history.push('/');
       })
   }
 
@@ -23,6 +25,12 @@ const Login = (props) => {
   return <>
 
     <form onSubmit={login}>
+      
+      <div className="row">
+        <div className="col-6">
+          {isFetching === true && '...Loading'}
+        </div>
+      </div>
 
       <div className="row mt-3">
         <div className="col-6">
